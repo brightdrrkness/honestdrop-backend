@@ -15,15 +15,22 @@ app.get("/", (req, res) => {
 // Simulate ad watching (adds sats)
 app.post("/watch-ad", (req, res) => {
   userBalance += 10;
-  res.json({ message: "Ad watched, +10 sats!", balance: userBalance });
+  res.json({
+    success: true,
+    message: "Ad watched, +10 sats!",
+    balance: userBalance
+  });
 });
 
 // Withdraw – supports BOTH legacy and frontend call
 app.post(["/withdraw", "/api/speed-withdraw"], (req, res) => {
-  res.json({
-    message: `Withdraw requested. Balance = ${userBalance} sats. (Demo only)`,
-  });
+  const withdrawnAmount = userBalance;
   userBalance = 0;
+  res.json({
+    success: true,
+    withdrawnAmount: withdrawnAmount,
+    message: "Withdrawal successful."
+  });
 });
 
 // Dynamic port (Render overrides this with 10000)
