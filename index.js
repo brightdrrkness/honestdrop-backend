@@ -32,7 +32,7 @@ app.post(["/withdraw", "/api/speed-withdraw"], async (req, res) => {
     console.log(`⚡ LIVE withdrawal | Amount: ${withdrawAmount} sats`);
 
     // Using native fetch (Node 18+)
-    const response = await fetch("https://api.tryspeed.com/v1/payments", {
+    const response = await fetch("https://api.tryspeed.com/v1/send", {
       method: "POST",
 headers: {
     "Authorization": "Basic " + Buffer.from(process.env.SPEED_SECRET_KEY + ":").toString("base64"),
