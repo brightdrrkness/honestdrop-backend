@@ -34,10 +34,10 @@ app.post(["/withdraw", "/api/speed-withdraw"], async (req, res) => {
     // Using native fetch (Node 18+)
     const response = await fetch("https://api.tryspeed.com/v1/payments", {
       method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.SPEED_SECRET_KEY}`,
-        "Content-Type": "application/json",
-      },
+headers: {
+    "Authorization": "Basic " + Buffer.from(process.env.SPEED_SECRET_KEY + ":").toString("base64"),
+    "Content-Type": "application/json",
+},
       body: JSON.stringify({
         amount: withdrawAmount,
         asset: "BTC",
